@@ -151,31 +151,31 @@
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Data:</label>
                   <div class="col">
-                     <input type="date" class="form-control">
+                     <input type="date" class="form-control" v-model="form.data">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Data/hora local:</label>
                   <div class="col">
-                     <input type="datetime-local" class="form-control">
+                     <input type="datetime-local" class="form-control" v-model="form.dataHoraLocal">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Mês:</label>
                   <div class="col">
-                     <input type="month" class="form-control">
+                     <input type="month" class="form-control" v-model="form.mes">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Semana:</label>
                   <div class="col">
-                     <input type="week" class="form-control">
+                     <input type="week" class="form-control" v-model="form.semana">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Hora:</label>
                   <div class="col">
-                     <input type="time" class="form-control">
+                     <input type="time" class="form-control" v-model="form.hora">
                   </div>
                </div>
                <div class="mb-3 row">
@@ -273,19 +273,19 @@
                <span>RG: {{ form.rg }}</span>
             </div>
             <div class="mb-3 row">
-               <span>Data:</span>
+               <span>Data: {{ form.data }} | {{moment(form.data).format('DD/MM/YY') }}</span>
             </div>
             <div class="mb-3 row">
-               <span>Data/hora local:</span>
+               <span>Data/hora local:{{ form.dataHoraLocal }}</span>
             </div>
             <div class="mb-3 row">
-               <span>Mês:</span>
+               <span>Mês:{{ form.mes }}</span>
             </div>
             <div class="mb-3 row">
-               <span>Semana:</span>
+               <span>Semana:{{form.semana}}</span>
             </div>
             <div class="mb-3 row">
-               <span>Hora:</span>
+               <span>Hora:{{form.hora}}</span>
             </div>
             <div class="mb-3 row">
                <span>Cor:</span>
@@ -307,10 +307,13 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
    name: 'Formulario',
    
    data: ()=>({
+      moment: {},
       form:{
          nome: '',
          email: '',
@@ -326,10 +329,20 @@ export default {
          cartaoDeCredito: '',
          placaVeiculo: '',
          placaVeiculoMercoSul: '',
-         rg: ''
+         rg: '',
+         data: '',
+         dataHoraLocal: '',
+         mes: '',
+         semana: '',
+         hora: ''
+
       }
       
-   })
+   }),
+
+   created(){
+      this.moment = moment
+   }
 
 }
 </script>
