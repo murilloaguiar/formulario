@@ -8,151 +8,157 @@
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Nome:</label>
                   <div class="col">
-                        <input type="text" class="form-control" v-model.lazy="form.nome">
+                     <input type="text" class="form-control" v-model.lazy="form.nome">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">E-mail:</label>
                   <div class="col">
-                        <input type="email" class="form-control" v-model="form.email">
+                     <input type="email" class="form-control" v-model="form.email">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Senha:</label>
                   <div class="col">
-                        <input type="password" class="form-control" v-model.trim="form.senha">
+                     <input type="password" class="form-control" v-model.trim="form.senha">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Idade:</label>
                   <div class="col">
-                        <input type="number" class="form-control" v-model.number="form.idade">
+                     <input type="number" class="form-control" v-model.number="form.idade">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Gênero:</label>
                   <div class="col">
-                        <div class="form-check form-check-inline">
-                           <input class="form-check-input" type="radio">
-                           <label class="form-check-label">
-                              Feminino
-                           </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                           <input class="form-check-input" type="radio">
-                           <label class="form-check-label">
-                              Masculino
-                           </label>
-                        </div>
+                     <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio">
+                        <label class="form-check-label">
+                           Feminino
+                        </label>
+                     </div>
+                     <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio">
+                        <label class="form-check-label">
+                           Masculino
+                        </label>
+                     </div>
                   </div>
                </div>
 
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Licença:</label>
                   <div class="col">
-                        <div class="form-check form-switch">
-                           <input class="form-check-input" type="checkbox">
-                           <label class="form-check-label">Li e aceito os termos</label>
-                        </div>
+                     <div class="form-check form-switch">
+                        <input 
+                           class="form-check-input" 
+                           type="checkbox" 
+                           v-model="form.licenca"
+                           true-value="SIM"
+                           false-value="NAO"
+                        >
+                        <label class="form-check-label">Li e aceito os termos</label>
+                     </div>
                   </div>
                </div>
 
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Interesses:</label>
                   <div class="col">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox">
-                           <label class="form-check-label">
-                              JavaScript
-                           </label>
-                        </div>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox">
-                           <label class="form-check-label">
-                              VueJS
-                           </label>
-                        </div>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox">
-                           <label class="form-check-label">
-                              Angular
-                           </label>
-                        </div>
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox">
-                           <label class="form-check-label">
-                              NodeJS
-                           </label>
-                        </div>
+                     <div class="form-check">
+                        <input class="form-check-input" value="JavaScript" type="checkbox" v-model="form.interesses">
+                        <label class="form-check-label">
+                           JavaScript
+                        </label>
+                     </div>
+                     <div class="form-check">
+                        <input class="form-check-input" value="VueJS" type="checkbox" v-model="form.interesses">
+                        <label class="form-check-label">
+                           VueJS
+                        </label>
+                     </div>
+                     <div class="form-check">
+                        <input class="form-check-input" value="Angular" type="checkbox" v-model="form.interesses">
+                        <label class="form-check-label">
+                           Angular
+                        </label>
+                     </div>
+                     <div class="form-check">
+                        <input class="form-check-input" value="NodeJS" type="checkbox" v-model="form.interesses">
+                        <label class="form-check-label">
+                           NodeJS
+                        </label>
+                     </div>
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Telefone:</label>
                   <div class="col">
-                        <input type="tel" class="form-control" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}">
-                        <small class="text-muted">Formato: 11 97777-5555</small>
+                     <input type="tel" class="form-control" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}">
+                     <small class="text-muted">Formato: 11 97777-5555</small>
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Data:</label>
                   <div class="col">
-                        <input type="date" class="form-control">
+                     <input type="date" class="form-control">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Data/hora local:</label>
                   <div class="col">
-                        <input type="datetime-local" class="form-control">
+                     <input type="datetime-local" class="form-control">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Mês:</label>
                   <div class="col">
-                        <input type="month" class="form-control">
+                     <input type="month" class="form-control">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Semana:</label>
                   <div class="col">
-                        <input type="week" class="form-control">
+                     <input type="week" class="form-control">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Hora:</label>
                   <div class="col">
-                        <input type="time" class="form-control">
+                     <input type="time" class="form-control">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Cor:</label>
                   <div class="col">
-                        <input type="color" class="form-color">
+                     <input type="color" class="form-color">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Valor limite:</label>
                   <div class="col">
-                        <input type="range" class="form-range" min="0" max="100" step="1">
+                     <input type="range" class="form-range" min="0" max="100" step="1">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Escondido:</label>
                   <div class="col">
-                        <input type="hidden" class="form-control">
+                     <input type="hidden" class="form-control">
                   </div>
                </div>
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Upload:</label>
                   <div class="col">
-                        <input type="file" class="form-control">
+                     <input type="file" class="form-control">
                   </div>
                </div>
                <hr>
                <div class="mb-3 row">
                   <div class="col d-flex justify-content-between">
-                        <button class="btn btn-secondary" type="reset">Limpar</button>
-                        <button class="btn btn-success" type="button">Enviar (btn)</button>
-                        <button class="btn btn-success" type="submit">Enviar (submit)</button>
+                     <button class="btn btn-secondary" type="reset">Limpar</button>
+                     <button class="btn btn-success" type="button">Enviar (btn)</button>
+                     <button class="btn btn-success" type="submit">Enviar (submit)</button>
                   </div>                        
                </div>
                
@@ -185,10 +191,13 @@
                <spam>Gênero:</spam>
             </div>
             <div class="mb-3 row">
-               <spam>Licença:</spam>
+               <spam>Licença: {{ form.licenca }}</spam>
             </div>
             <div class="mb-3 row">
                <spam>Interesses:</spam>
+               <ul>
+                  <li v-for="(interesse, index) in form.interesses" :key="index">{{interesse}}</li>
+               </ul>
             </div>
             <div class="mb-3 row">
                <spam>Telefone:</spam>
@@ -236,7 +245,9 @@ export default {
          nome: '',
          email: '',
          senha: '',
-         idade: ''
+         idade: '',
+         licenca: 'NAO',
+         interesses: ['VueJS','JavaScript'] //array por serem múltiplas seleções
       }
       
    })
