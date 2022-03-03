@@ -273,10 +273,21 @@
                <span>RG: {{ form.rg }}</span>
             </div>
             <div class="mb-3 row">
-               <span>Data: {{ form.data }} | {{moment(form.data).format('DD/MM/YY') }}</span>
+               <span>Data: {{ form.data }} | {{ $moment(form.data).format('DD/MM/YY') }}</span>
             </div>
             <div class="mb-3 row">
                <span>Data/hora local:{{ form.dataHoraLocal }}</span>
+               <ul>
+                  <li>{{ $moment(form.dataHoraLocal).format('dddd') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).add(10,'days').format('LL') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).add(1,'months').format('LL') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).add(2,'years').format('LL') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).subtract(10,'days').format('LL') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).subtract(1,'months').format('LL') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).subtract(2,'years').format('LL') }}</li>
+                  <li>{{ $moment(form.dataHoraLocal).add(2,'days').format('LLLL') }}</li>
+                  
+               </ul>
             </div>
             <div class="mb-3 row">
                <span>Mês:{{ form.mes }}</span>
@@ -307,13 +318,12 @@
 </template>
 
 <script>
-import moment from 'moment'
 
 export default {
    name: 'Formulario',
    
    data: ()=>({
-      moment: {},
+      
       form:{
          nome: '',
          email: '',
@@ -339,10 +349,6 @@ export default {
       }
       
    }),
-
-   created(){
-      this.moment = moment
-   }
 
 }
 </script>
