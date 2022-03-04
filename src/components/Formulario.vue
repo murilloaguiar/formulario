@@ -4,7 +4,8 @@
          <div class="col-6 bg-light" >
             <span class="fs-4">ENTRADA DE DADOS</span>
             <hr>
-            <form>
+            <!-- <form @submit.prevent="enviar($event)"> -->
+            <form @reset.prevent="resetar($event)">
                <div class="mb-3 row">
                   <label class="col-3 col-form-label">Nome:</label>
                   <div class="col">
@@ -202,11 +203,34 @@
                      <input type="file" class="form-control" multiple @change="selecionarArquivos">
                   </div>
                </div>
+               <div class="mb-3 row">
+                  <label class="col-3 col-form-label">Descrição:</label>
+                  <div class="col">
+                     <textarea class="form-control" rows="5" v-model="form.descricao"></textarea>
+                  </div>
+               </div>
+               <div class="mb-3 row">
+                  <label class="col-3 col-form-label">Cursos:</label>
+                  <div class="col">
+                     <select class="form-select" v-model="form.curso">
+                        <option value="" disabled>Selecione</option>
+                        <option v-for="curso in cursos" :key="curso.id" :value="curso.id">{{curso.curso}}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="mb-3 row">
+                  <label class="col-3 col-form-label">Avaliação:</label>
+                  <div class="col">
+                     <!-- <input-estrelas :numero-estrelas="5" @avaliar="form.avaliacao = $event"></input-estrelas> -->
+                     <input-estrelas :numero-estrelas="5" v-model:avaliar="form.avaliacao"></input-estrelas>
+                  </div>
+               </div>
                <hr>
                <div class="mb-3 row">
                   <div class="col d-flex justify-content-between">
+                     <button class="btn btn-secondary" type="button" @click="resetar()">Limpar (btn)</button>
                      <button class="btn btn-secondary" type="reset">Limpar</button>
-                     <button class="btn btn-success" type="button">Enviar (btn)</button>
+                     <button class="btn btn-success" type="button" @click="enviar($event)">Enviar (btn)</button>
                      <button class="btn btn-success" type="submit">Enviar (submit)</button>
                   </div>                        
                </div>
@@ -305,14 +329,25 @@
                <span>Valor limite: {{ form.alcance }}</span>
             </div>
             <div class="mb-3 row">
-               <span>Escondido: {{form.escondido}}</span>
+               <span>Escondido: {{ form.escondido }}</span>
             </div>
             <div class="mb-3 row">
                <span>Upload:</span>
                <ul>
                   <li v-for="(arquivo, index) in form.arquivos" :key="index">{{arquivo.name}}</li>
                </ul>
-            </div>  
+            </div> 
+            <div class="mb-3 row">
+               <span>Descrição: </span>
+               <!-- <pre>{{form.descricao}}</pre> -->
+               <div style="white-space: pre">{{ form.descricao }}</div>
+            </div> 
+            <div class="mb-3 row">
+               <span>Curso: {{ form.curso }}</span>
+            </div> 
+            <div class="mb-3 row">
+               <span>Avaliação: {{ form.avaliacao }}</span>
+            </div> 
          </div>
       </div>
 
@@ -322,12 +357,24 @@
 
 <script>
 
+import InputEstrelas from '@/components/InputEstrelas.vue'
+
 export default {
+   components:{
+      InputEstrelas
+   },
+
    name: 'Formulario',
    
    data: ()=>({
-      
-      form:{
+      cursos: [
+         {id: 1, curso: 'Banco de dados'},
+         {id: 2, curso: 'Desenvolvimento web Vue'},
+         {id: 3, curso: 'Desenvolvimento web Laravel'},
+         {id: 4, curso: 'Desenvolvimento com NodeJS'}
+      ],
+      form: {},
+      formEstadoInicial:{
          nome: '',
          email: '',
          senha: '',
@@ -352,16 +399,35 @@ export default {
          alcance: 5,
          escondido: 'Esse input está escondido',
          arquivos: {},
-
+         desricao: '',
+         curso: '',
+         avaliacao: 0
       }
       
    }),
+
+   created(){
+      this.resetar()
+   },
 
    methods: {
       selecionarArquivos(event){
          //console.log(event.target.files)
 
          this.form.arquivos = event.target.files
+      },
+
+      enviar(event){
+         console.log(event)
+
+         //fazendo uma cópia do obejto form. Melhor para manipular os dados e não comprometer o objeto original
+         const formEnvio = Object.assign({},this.formEstadoInicial)
+
+         console.log(formEnvio)
+      },
+
+      resetar(){
+         this.form = Object.assign({},this.formEstadoInicial)
       }
    }
 
